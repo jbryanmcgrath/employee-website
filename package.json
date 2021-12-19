@@ -1,0 +1,26 @@
+{
+  "name": "employee-website",
+  "version": "1.0.0",
+  "description": "employee website generator from the command line",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbryanmcgrath/employee-website.git"
+  },
+  "author": "Bryan McGrath",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jbryanmcgrath/employee-website/issues"
+  },
+  "homepage": "https://github.com/jbryanmcgrath/employee-website#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "jest": "^27.4.5"
+  }
+}
