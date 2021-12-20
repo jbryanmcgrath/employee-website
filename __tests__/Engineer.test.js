@@ -1,9 +1,12 @@
 const Employee = require('../lib/Employee')
 const Engineer = require('../lib/Engineer')
 
-test('creates engineer object extending from Employee Class', () => {
-    const engineer = new Engineer('bryan')
+test('creates an engineer object', () => {
+    const engineer = new Engineer('bryan', 'jm707d', 'jm707d@gmail.com', 'jbryanmcgrath')
 
-    expect(engineer.gitHub).toEqual(expect.any(String));
-    expect(engineer.employeeTitle).toBe('Engineer')
-})  
+    expect(engineer.name).toBe('bryan');
+    expect(engineer.id).toEqual(expect.any(String));
+    expect(engineer.email).toEqual(expect.any(String));
+    expect(engineer.github).toEqual(expect.any(String));
+    expect(engineer.getRole()).toBe('Engineer')
+})
