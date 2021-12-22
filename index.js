@@ -50,7 +50,7 @@ const initiateApp = managerData => {
     }]
 }
 initiateApp()
-    .then(console.log(managerData))
+    // .then(console.log(managerData))
 // const userInput = () => {
 //     inquirer.prompt[{
 //         type: 'list',
