@@ -99,18 +99,23 @@ const employeeClassQuestions = () => {
 const addEmployee = () => {
     return inquirer.prompt([{
         type: 'list',
-        name: 'office',
+        name: 'addEmployee',
         message: 'Do you have any positions to add?',
-        choices: ['Employee', 'Engineer', 'Intern', 'No More Roles to Add'],
-        validate: officeList => {
-            if (officeList === 'No More Roles to Add') {
-                console.log('Thank you for using this app to generate your employee webpage. Have a great day');
-            }
-            if (officeList === 'Employee') {
-                employeeClassQuestions();
-            }
-        }
+        choices: ['Employee', 'Engineer', 'Intern', 'No More Roles to Add']
+        // const addingEmployees = (officeList) => {
+        //     if (officeList === 'No More Roles to Add') {
+        //         console.log('Thank you for using this app to generate your employee webpage. Have a great day');
+        //     }
+        //     if (officeList === 'Employee') {
+        //         const askEmployee = employeeClassQuestions();
+        //     }
     }])
+    if (addEmployee === 'No More Roles to Add') {
+        return console.log('Thank you for using this app to generate your employee webpage. Have a great day');
+    }
+    if (addEmployee === 'Employee') {
+        return employeeClassQuestions();
+    }
 };
 
 
