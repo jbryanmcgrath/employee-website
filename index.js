@@ -89,18 +89,30 @@ const employeeClassQuestions = () => {
             }
         }
     }])
-        .then(addEmployee())
 };
 
 
-
+const internClassQuestions = () => {
+    return inquirer.prompt([{
+        type: 'input',
+        name: 'intern',
+        message: 'What school did you attend? (Required)',
+        validate: internInput => {
+            if (internInput) {
+                return true
+            } else {
+                console.log('Please enter a valid school')
+            }
+        }
+    }])
+}
 
 
 
 const addEmployee = () => {
     return inquirer.prompt([{
         type: 'list',
-        name: 'addmployee',
+        name: 'addEmployee',
         message: 'Do you have any positions to add?',
         choices: ['Employee', 'Engineer', 'Intern', 'No More Roles to Add']
     }
@@ -110,8 +122,12 @@ const addEmployee = () => {
                 return console.log('Thank you for using this app to generate your employee webpage. Have a great day');
             }
             if (answer.addEmployee === 'Employee') {
-                return employeeClassQuestions();
+                employeeClassQuestions();
             }
+            if (answer.addEmployee === 'Intern') {
+                employeeClassQuestions()
+            }
+            return;
         })
 }
 
