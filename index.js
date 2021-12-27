@@ -3,6 +3,10 @@ const Employee = require('./lib/Employee')
 const Manager = require('./lib/Manager')
 const Engineer = require('./lib/Engineer')
 const Intern = require('./lib/Intern')
+const employees = []
+const generateHTML = require('./src/page-template')
+const fs = require('fs')
+
 
 
 const managerQuestions = () => {
@@ -48,7 +52,9 @@ const managerQuestions = () => {
         name: 'office',
         message: 'Please enter the manager office number (Required)'
     }])
-        .then(() => {
+        .then((managerData) => {
+            const newManager = new Manager(managerData.manager, managerData.id, managerData.email, managerData.office);
+            employees.push(newManager)
             addEmployee()
         })
 }
@@ -96,10 +102,10 @@ const employeeClassQuestions = () => {
 };
 
 
-const internClassQuestions = () => {
+const internClassQuestions = (answers) => {
     inquirer.prompt([{
         type: 'input',
-        name: 'intern',
+        name: 'school',
         message: 'What school did you attend? (Required)',
         validate: internInput => {
             if (internInput) {
@@ -109,15 +115,17 @@ const internClassQuestions = () => {
             }
         }
     }])
-        .then(() => {
+        .then((internData) => {
+            const newIntern = new Intern(answers.employee, answers.id, answers.email, internData.school);
+            employees.push(newIntern);
             addEmployee();
         })
 }
 
-const engineerClassQuestions = () => {
+const engineerClassQuestions = (answers) => {
     inquirer.prompt([{
         type: 'input',
-        name: 'engineer',
+        name: 'github',
         message: 'What is your Github profile name? (Required)',
         validate: engineerInput => {
             if (engineerInput) {
@@ -127,7 +135,10 @@ const engineerClassQuestions = () => {
             }
         }
     }])
-        .then(() => {
+        .then((engineerData) => {
+            const newEngineer = new Engineer(answers.employee, answers.id, answers.email, engineerData.github);
+            console.log(newEngineer.getRole())
+            employees.push(newEngineer)
             addEmployee();
         })
 }
@@ -142,31 +153,29 @@ const addEmployee = () => {
     }])
         .then(selection => {
             switch (selection.addEmployee) {
-                case 'Employee':
-                    employeeClassQuestions().then((answers) => {
-                        addEmployee();
-                        console.log()
-                    });
-                    break;
                 case 'Intern':
                     employeeClassQuestions().then((answers) => {
-                        internClassQuestions()
+                        internClassQuestions(answers)
                     })
                     break;
 
                 case 'Engineer':
                     employeeClassQuestions().then((answers) => {
-                        engineerClassQuestions();
+                        engineerClassQuestions(answers);
                     });
                     break;
                 case 'No More Roles to Add':
+                    console.log(employees)
+                    // study fs
+                    fs.writeFileSync('./dist/index.html', generateHTML(employees));
                     console.log('Thanks. Come Again!');
                     break;
             }
         })
 }
 
-managerQuestions()
+managerQuestions();
+
 
 // get information through inquireer
 //store info in constructor
