@@ -12,7 +12,7 @@ const managerCard = (managerData) => {
                 ID : ${managerData.id}
             </div>
             <div class="border p-2 m-1">
-                Email : ${managerData.email}
+                Email : Email : <a href = "mailto: test@testing.com">${managerData.email}</a>
             </div>
             <div class="border p-2 m-1">
                 Office Number : ${managerData.officeNumber}
@@ -47,7 +47,7 @@ const internCard = (internData) => {
         ID : ${internData.id}
     </div>
     <div class="border p-2 m-1">
-        Email : ${internData.email}
+        Email : <a href = "mailto: test@testing.com">${internData.email}</a>
     </div>
     <div class="border p-2 m-1">
         School : ${internData.school}
@@ -64,10 +64,10 @@ const engineerCard = (engineerData) => {
         ID : ${engineerData.id}
     </div>
     <div class="border p-2 m-1">
-        Email : ${engineerData.email}
+        Email : Email : <a href = "mailto: test@testing.com">${engineerData.email}</a>
     </div>
     <div class="border p-2 m-1">
-        Github : ${engineerData.github}
+        Github : <a href='https://github.com/${engineerData.github}'>${engineerData.github}</a>
     </div>
 </div>`
 }
